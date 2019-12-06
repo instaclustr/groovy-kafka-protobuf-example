@@ -1,0 +1,33 @@
+= Groovy+Kafka+Protobuf Example
+
+This repository contains an example Kafka _consumer_ and _producer_ written in Groovy that handle
+Protobuf encoded messages.
+
+== Usage
+
+1. Compile the .proto files into a JAR:
++
+----
+cd proto && mvn package
+----
++
+This will output `proto/target/proto-0.1.1-SNAPSHOT.jar`
+
+2. Run the consumer Groovy script:
++
+----
+groovy -cp proto/target/proto-0.1.1-SNAPSHOT.jar groovy/src/consumer.groovy
+----
+
+3. Run the producer Groovy script:
++
+----
+groovy -cp proto/target/proto-0.1.1-SNAPSHOT.jar groovy/src/producer.groovy "Hello World"
+----
+
+If everything works correctly you should see `message` field from the `ExampleMessage` Protobuf displayed by the consumer:
+
+----
+groovy -cp proto/target/proto-0.1.1-SNAPSHOT.jar groovy/src/groovy/consumer.groovy
+got message: Hello World
+----
